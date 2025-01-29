@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Exception
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int numerator = Convert.ToInt32(textBox1.Text);
+                int denominator = Convert.ToInt32(textBox3.Text);
+                int Answer = numerator / denominator;
+                textBox4.Text = Answer.ToString();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Invalid input enter two numbers please");
+            }
+            catch (DivideByZeroException divideByZeroException)
+            {
+                MessageBox.Show(divideByZeroException.Message, "Can't divide by zero");
+            }
+            finally
+            {
+                textBox1.Text = "";
+                textBox3.Text = "";
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            var form2 = new Form1();
+            form2.Show();
+            this.Hide();
+        }
+    }
+}
