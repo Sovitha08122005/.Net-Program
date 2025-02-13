@@ -22,9 +22,9 @@ namespace Exception
             try
             {
                 int numerator = Convert.ToInt32(textBox1.Text);
-                int denominator = Convert.ToInt32(textBox3.Text);
+                int denominator = Convert.ToInt32(textBox2.Text);
                 int Answer = numerator / denominator;
-                textBox4.Text = Answer.ToString();
+                textBox3.Text = Answer.ToString();
             }
             catch (FormatException)
             {
@@ -37,7 +37,7 @@ namespace Exception
             finally
             {
                 textBox1.Text = "";
-                textBox3.Text = "";
+                textBox2.Text = "";
             }
         }
 
