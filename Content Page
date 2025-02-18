@@ -1,0 +1,19 @@
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Master_1.WebForm1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContentPlaceHolder1" runat="Server">
+<table>
+<tr>
+<th>
+<h1>Student Information</h1>
+</th>
+</tr>
+<tr>
+<td><b>Name: Chetan Nargund</b></td>
+</tr>
+<tr>
+<td><b>College: AIT</b></td>
+</tr>
+<tr>
+<td><b>City: Bangalore</b></td>
+</tr>
+</table>
+</asp:Content>
