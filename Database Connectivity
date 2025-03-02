@@ -7,34 +7,31 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace WebApplication1
+namespace WebApplication7
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Registration : System.Web.UI.Page
     {
-        SqlCommand command;
+        SqlCommand cmd;
         SqlConnection con;
-        public void dbcon()
+        String query;
+        public void dbconn()
         {
-            String config =
-            System.Configuration.ConfigurationManager.ConnectionStrings["Connection String"].ToString();
-            con = new SqlConnection(config);
+            String conn = System.Configuration.ConfigurationManager.ConnectionStrings["mycon"].ToString();
+            con = new SqlConnection(conn);
             con.Open();
         }
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-        protected void SqlDataSource1_Selecting(object sender,SqlDataSourceSelectingEventArgs e)
-        {
-        }
+
         protected void Button1_Click(object sender, EventArgs e)
         {
-            dbcon();
-            String name = TextBox1.Text;
-            String age = TextBox2.Text;
-            String query = "INSERT INTO dbo(Name, Age) VALUES('"+name+"','"+age+"')";
-                command = new SqlCommand(query, con);
-            command.ExecuteNonQuery();
+            dbconn();
+            query = "INSERT INTO Form(name, age) VALUES(' " + TextBox1.Text + " ',' " + TextBox2.Text + " ')";
+            cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            Response.Write("<script>alert('data saved')</script>");
         }
-        }
+    }
 }
