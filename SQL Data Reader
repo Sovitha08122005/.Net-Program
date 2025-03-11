@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace WebApplication12
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        SqlCommand cmd;
+        SqlConnection con;
+        string query;
+        public void dbconn()
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["mycon"].ToString();
+            con = new SqlConnection(conn);
+            con.Open();
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            dbconn();
+            query = "insert into Mark(Name, [Subject 1], [Subject 2], [Subject 3], [Subject 4]) " +
+                    "values(@Name, @Subject1, @Subject2, @Subject3, @Subject4)";
+
+            cmd = new SqlCommand(query, con);
+
+            // Use parameters to avoid SQL injection and handle values safely
+            cmd.Parameters.AddWithValue("@Name", TextBox1.Text);
+            cmd.Parameters.AddWithValue("@Subject1", TextBox2.Text);
+            cmd.Parameters.AddWithValue("@Subject2", TextBox3.Text);
+            cmd.Parameters.AddWithValue("@Subject3", TextBox4.Text);
+            cmd.Parameters.AddWithValue("@Subject4", TextBox5.Text);
+
+            cmd.ExecuteNonQuery();
+            Response.Write("<script> alert('data saved')</script>");
+        }
+    }
+}
